@@ -1,10 +1,10 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
 
-const CustomerPage = () => {
+const CustomerPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   return (
     <>
-      <Sidebar />
+      <Sidebar open={open} onOpen={onOpenSidebar} onClose={onCloseSidebar} />
       <p>This is the customer page.</p>
     </>
   )
