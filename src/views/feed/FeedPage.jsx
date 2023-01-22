@@ -1,10 +1,10 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
 
-const FeedPage = () => {
+const FeedPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   return (
     <>
-      <Sidebar />
+      <Sidebar open={open} onOpen={onOpenSidebar} onClose={onCloseSidebar} />
       <p>This is the feed page.</p>
     </>
   )
