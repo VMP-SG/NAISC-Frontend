@@ -19,8 +19,8 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   },[])
   return (
     <>
-      <div className='flex flex-row'>
       <Sidebar open={open} onOpen={onOpenSidebar} onClose={onCloseSidebar} />
+      <div className='flex flex-row h-screen'>
       <Card text="Heatmap"/>
       </div>
       <p>This is the home page.</p>
