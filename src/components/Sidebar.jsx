@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import LogoSidebar from "../assets/Picture 2.png";
+import React from 'react'
+import LogoSidebar from "../assets/LogoSidebar.png";
 import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, CameraIcon, ChartBarIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/outline"
 import { NavLink } from 'react-router-dom';
 

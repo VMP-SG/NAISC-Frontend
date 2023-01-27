@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Dropdown from '../../components/Dropdown'
 import Sidebar from '../../components/Sidebar'
 import Card from '../../components/Card'
+import LogoHome from '../../assets/LogoHome.png';
 
 const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   const [data, setData] = useState("");
@@ -21,7 +22,8 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   return (
     <>
       <Sidebar open={open} onOpen={onOpenSidebar} onClose={onCloseSidebar} />
-      <div className='flex w-screen pl-40 pr-10'>
+      <div className='flex flex-col w-screen pl-40 pr-10 pt-12'>
+        <img src={LogoHome} className='h-[45px] w-[310px] mb-7'/>
         <Card title="Heatmap">
           <Dropdown />
         </Card>
