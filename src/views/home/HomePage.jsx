@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react'
+import Dropdown from '../../components/Dropdown'
 import Sidebar from '../../components/Sidebar'
 import Card from '../../components/Card'
 
 const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   const [data, setData] = useState("");
-  useEffect(() => {
-    const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/test");
-    sse.onmessage = (e) => {
-      setData(e.data);
-    }
+  // useEffect(() => {
+  //   const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/test");
+  //   sse.onmessage = (e) => {
+  //     setData(e.data);
+  //   }
 
-    sse.onerror = () => {
-      console.log("Error");
-      sse.close();
-    }
+  //   sse.onerror = () => {
+  //     console.log("Error");
+  //     sse.close();
+  //   }
 
-    return () => sse.close();
-  },[])
+  //   return () => sse.close();
+  // },[])
   return (
     <>
       <Sidebar open={open} onOpen={onOpenSidebar} onClose={onCloseSidebar} />
-      <div className='flex flex-row h-screen'>
-      <Card text="Heatmap"/>
+      <div className='flex w-screen pl-40 pr-10'>
+        <Card title="Heatmap">
+          <Dropdown />
+        </Card>
       </div>
-      <p>This is the home page.</p>
-      <p>Data: {data}</p>
+      {/* <p>This is the home page.</p> */}
+      {/* <p>Data: {data}</p> */}
     </>
   )
 }
