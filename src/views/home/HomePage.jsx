@@ -24,8 +24,11 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
       <Sidebar open={open} onOpen={onOpenSidebar} onClose={onCloseSidebar} />
       <div className='flex flex-col w-screen pl-40 pr-10 pt-12'>
         <img src={LogoHome} className='h-[45px] w-[310px] mb-7'/>
-        <Card title="Heatmap">
-          <Dropdown />
+        <Card>
+          <div className="flex flex-row justify-between">
+            <p className="font-bold text-2xl">Heatmap</p>
+            <Dropdown />
+          </div>
         </Card>
       </div>
       {/* <p>This is the home page.</p> */}
