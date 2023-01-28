@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import LogoSidebar from "../assets/Picture 2.png";
+import React from 'react'
+import LogoSidebar from "../assets/LogoSidebar.png";
 import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, CameraIcon, ChartBarIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/outline"
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({ open, onClose, onOpen }) => {
   return (
-    <div className={`h-screen p-10 w-screen fixed ${open ? "bg-white bg-opacity-70" : ""}`}>
+    <div className={`h-screen p-10 fixed ${open ? "bg-white bg-opacity-70" : ""}`}>
       <div className={`${open ? "w-[236px]" : "w-[92px]"} transition-all duration-300 h-full relative`}>
         <div className='bg-white flex justify-center items-center rounded-full w-6 h-6 absolute right-0 top-10 shadow-md cursor-pointer z-20'>
           {
