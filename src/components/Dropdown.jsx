@@ -1,52 +1,57 @@
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-const Dropdown = () => {
-    const [isClicked, setisClicked] = useState(false);
-    function click() {
-        setisClicked(function (oldValue) {
-          return !oldValue;
-        });
+const Dropdown = ({ options, setSelectedOption, selectedOption }) => {
+  const [isClicked, setisClicked] = useState(false);
+
+  const ref = useRef(null);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdownHandler = () => setisClicked((prev) => !prev);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target) && !dropdownRef.current.contains(e.target)) {
+        setisClicked(false);
+      }
     }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  },[ref]);
     
+  return ( 
+    <div className='relative cursor-pointer'>
+      <div 
+        className="focus:ring-4 focus:outline-none focus:ring-blue-300 
+        font-medium rounded-lg text-xl text-between inline-flex items-center" 
+        onClick={toggleDropdownHandler}
+        ref={ref}
+      >
+        {selectedOption}
+        {
+          isClicked
+          ? <ChevronUpIcon className="w-6 ml-4 rounded-full bg-gray-light" strokeWidth={2} />
+          : <ChevronDownIcon className="w-6 ml-4" strokeWidth={2} />
+        }
+      </div>
 
-    return ( 
-        <>
-            <div id="dropdownDefaultButton" 
-            data-dropdown-toggle="dropdown" 
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-            font-medium rounded-lg text-xl px-4 py-2.5 text-between inline-flex items-center
-             dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
-             onClick = {click}>
-                Zone
-                {
-                    isClicked
-                    ? <ChevronUpIcon className="stroke-white w-5" strokeWidth={2} onClick={click}/>
-                    : <ChevronDownIcon className="stroke-white w-5" strokeWidth={2} onClick={click}/>
-                }
-            </div>
-
-            <div id="dropdown" className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                {
-                    isClicked && (
-                        <div id="dropdown" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Zone A</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Zone B</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Zone C</a>
-                                </li>
-                            </ul>
-                        </div>         
-                    )
-                }
-            </div>
-        </>
-    )
+      <div className="z-10 bg-white rounded-2xl shadow-xl w-44 absolute right-0 mt-4 overflow-hidden" ref={dropdownRef}>
+        {
+          isClicked && (
+            <ul className="text-2xl text-center text-gray-700" aria-labelledby="dropdownDefaultButton">
+              {options.map((option) => 
+                <li className='cursor-pointer' onClick={() => {toggleDropdownHandler(); setSelectedOption(option)}}>
+                  <p class="py-3 hover:bg-gray-light">{option}</p>
+                </li>
+              )}
+            </ul>   
+          )
+        }
+      </div>
+    </div>
+  )
 }
 
 export default Dropdown
