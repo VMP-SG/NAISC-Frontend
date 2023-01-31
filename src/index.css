@@ -18,8 +18,11 @@
 }
 
 a {
-  /* font-weight: 500; */
   text-decoration: inherit;
+}
+
+th {
+  font-weight: normal;
 }
 
 /* body {
