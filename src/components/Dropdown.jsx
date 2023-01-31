@@ -24,8 +24,7 @@ const Dropdown = ({ options, setSelectedOption, selectedOption }) => {
   return ( 
     <div className='relative cursor-pointer'>
       <div 
-        className="focus:ring-4 focus:outline-none focus:ring-blue-300 
-        font-medium rounded-lg text-xl text-between inline-flex items-center" 
+        className="rounded-lg text-xl text-between inline-flex items-center" 
         onClick={toggleDropdownHandler}
         ref={ref}
       >

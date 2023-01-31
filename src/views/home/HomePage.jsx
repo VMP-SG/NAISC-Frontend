@@ -53,17 +53,17 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
         <div className='flex mt-10 gap-10'>
           <div>
             <Card>
-              <h2 className="font-bold text-2xl">People Count</h2>
+              <h2 className="font-bold text-2xl whitespace-nowrap">People Count</h2>
               <div className='grid grid-cols-10 gap-[6px] mt-4'>
                 {totalIcons}
               </div>
               <div className='mt-6 flex justify-between items-center'>
-                <h1 className='text-5xl font-bold'>~{totalCount}</h1>
+                <h1 className='text-4xl font-bold'>~{totalCount}</h1>
                 <p className='text-2xl leading-7'>In <br />Total</p>
               </div>
             </Card>
             <Card className='mt-10'>
-              <h2 className="font-bold text-2xl">People Count</h2>
+              <h2 className="font-bold text-2xl whitespace-nowrap">People Count</h2>
               <div className='grid grid-cols-10 gap-[6px] mt-4'>
                 {zonalIcons}
               </div>
