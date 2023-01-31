@@ -30,16 +30,16 @@ const Dropdown = ({ options, setSelectedOption, selectedOption }) => {
         ref={ref}
       >
         {selectedOption}
-        <ChevronUpIcon className={`w-6 ml-4 rounded-full bg-gray-light ${isClicked ? "rotate-180" : ""} transition-all duration-300`} strokeWidth={2} />
+        <ChevronDownIcon className={`w-6 ml-4 rounded-full ${isClicked ? "rotate-180 bg-gray-light" : ""} transition-all duration-300`} strokeWidth={2} />
       </div>
 
       <div className="bg-white rounded-2xl shadow-xl w-44 absolute right-0 mt-4 overflow-hidden" ref={dropdownRef}>
         {
           isClicked && (
             <ul className="text-2xl text-center text-gray-700" aria-labelledby="dropdownDefaultButton">
-              {options.map((option) => 
-                <li className='cursor-pointer' onClick={() => {toggleDropdownHandler(); setSelectedOption(option)}}>
-                  <p class="py-3 hover:bg-gray-light">{option}</p>
+              {options.map((option, i) => 
+                <li className='cursor-pointer' key={i} onClick={() => {toggleDropdownHandler(); setSelectedOption(option)}}>
+                  <p className="py-3 hover:bg-gray-light">{option}</p>
                 </li>
               )}
             </ul>   
