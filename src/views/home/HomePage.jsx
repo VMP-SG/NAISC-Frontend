@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Dropdown from '../../components/Dropdown'
 import Sidebar from '../../components/Sidebar'
 import Card from '../../components/Card'
 import LogoHome from '../../assets/LogoHome.png';
 
+const options = ['Overall', 'Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E']
+
 const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   const [data, setData] = useState("");
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   // useEffect(() => {
   //   const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/test");
   //   sse.onmessage = (e) => {
@@ -27,7 +30,7 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
         <Card>
           <div className="flex flex-row justify-between">
             <p className="font-bold text-2xl">Heatmap</p>
-            <Dropdown />
+            <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
           </div>
         </Card>
       </div>
