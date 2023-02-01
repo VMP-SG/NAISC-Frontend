@@ -1,7 +1,7 @@
-import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
+import { ChevronDownIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline"
 import React, { useState, useRef, useEffect } from "react";
 
-const Dropdown = ({ options, setSelectedOption, selectedOption }) => {
+const Dropdown = ({ options, setSelectedOption, selectedOption, mode }) => {
   const [isClicked, setisClicked] = useState(false);
 
   const ref = useRef(null);
@@ -28,8 +28,14 @@ const Dropdown = ({ options, setSelectedOption, selectedOption }) => {
         onClick={toggleDropdownHandler}
         ref={ref}
       >
-        {selectedOption}
-        <ChevronDownIcon className={`w-6 ml-4 rounded-full ${isClicked ? "rotate-180 bg-gray-light" : ""} transition-all duration-300`} strokeWidth={2} />
+        {
+          mode === 'primary' ? 
+          <>
+            {selectedOption}
+            <ChevronDownIcon className={`w-6 ml-4 rounded-full ${isClicked ? "rotate-180 bg-gray-light" : ""} transition-all duration-300`} strokeWidth={2} />
+          </> :
+            <EllipsisVerticalIcon className={`w-6 ml-4 rounded-full ${isClicked ? "bg-gray-light" : ""} transition-all duration-300`} strokeWidth={2}  />
+        }
       </div>
 
       <div className="bg-white rounded-2xl shadow-xl w-44 absolute right-0 mt-4 overflow-hidden" ref={dropdownRef}>

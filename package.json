@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",
+    "chart.js": "^4.2.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-grid-heatmap": "^1.2.0",
     "react-router-dom": "^6.7.0"
   },
   "devDependencies": {

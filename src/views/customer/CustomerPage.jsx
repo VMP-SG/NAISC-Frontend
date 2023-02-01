@@ -3,7 +3,6 @@ import Sidebar from '../../components/Sidebar'
 import SeatTable from './SeatTable'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import PopularStallCard from './PopularStallCard'
-import ShortestStallCard from './ShortestStallCard'
 
 const CustomerPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   const [page, setPage] = useState(0);
@@ -20,8 +19,8 @@ const CustomerPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
         </div>
         {
           page % 3 === 0 ? <SeatTable /> : 
-          page % 3 === 1 ? <PopularStallCard /> : 
-          <ShortestStallCard />
+          page % 3 === 1 ? <PopularStallCard mode='Descending' /> : 
+          <PopularStallCard mode='Ascending' />
         }
       </div>
     </>

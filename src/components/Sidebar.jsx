@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import LogoSidebar from "../assets/LogoSidebar.png";
 import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, CameraIcon, ChartBarIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/outline"
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({ open, onClose, onOpen }) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        onClose();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  },[ref]);
+
+  if (open) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
+
   return (
-    <div className={`h-screen p-10 fixed ${open ? "bg-white bg-opacity-90 w-full" : ""} z-10`}>
-      <div className={`${open ? "w-[236px]" : "w-[92px]"} transition-all duration-300 h-full relative`}>
+    <div className={`h-screen p-10 fixed ${open ? "bg-white bg-opacity-90 w-full" : ""} z-50`}>
+      <div className={`${open ? "w-[236px]" : "w-[92px]"} transition-all duration-300 h-full relative`} ref={ref}>
         <div className='bg-white flex justify-center items-center rounded-full w-6 h-6 absolute right-0 top-10 shadow-md cursor-pointer z-20'>
           {
             open ? 

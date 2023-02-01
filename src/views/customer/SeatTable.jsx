@@ -1,45 +1,99 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '../../components/Card'
 import Dropdown from '../../components/Dropdown'
 import StatusTag from './StatusTag'
-import { ids } from '../../constants/id'
+import { ids } from '../../constants/zone'
 
 const options = ["Descending", "Ascending"];
 
 const SeatTable = () => {
-  const data = [
-    {
-      zone: 'A',
-      tableCount: ids.find((id) => id.zone === 'A').tables.length,
-      emptyTables:  ids.find((id) => id.zone === 'A').tables.length,
-      peopleCount: 10
-    },
-    {
-      zone: 'B',
-      tableCount: ids.find((id) => id.zone === 'B').tables.length,
-      emptyTables: Math.floor(ids.find((id) => id.zone === 'B').tables.length / 3),
-      peopleCount: 15
-    },
-    {
-      zone: 'C',
-      tableCount: ids.find((id) => id.zone === 'C').tables.length,
-      emptyTables: 0,
-      peopleCount: 20
-    }
-  ]
+  const [data, setData] = useState(
+    [
+      {
+        zone: 'A',
+        tableCount: ids.find((id) => id.zone === 'A').tables.length,
+        emptyTables:  0,
+        peopleCount: 0
+      },
+      {
+        zone: 'B',
+        tableCount: ids.find((id) => id.zone === 'B').tables.length,
+        emptyTables: 0,
+        peopleCount: 0
+      },
+      {
+        zone: 'C',
+        tableCount: ids.find((id) => id.zone === 'C').tables.length,
+        emptyTables: 0,
+        peopleCount: 0
+      }
+    ]
+  )
+
   const [selectedOption, setSelectedOption] = useState(options[0]);
-  const sortedData = [...data].sort((a, b) => {
-    if (a.emptyTables < b.emptyTables) {
-      return selectedOption === 'Ascending' ? -1 : 1;
-    } else if (a.emptyTables > b.emptyTables) {
-      return selectedOption === 'Ascending' ? 1 : -1;
-    } else return 0;
-  });
+  useEffect(() => {
+    const tablesSse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/occupancy/tables");
+    const countSse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/count/zones");
+    tablesSse.onmessage = (e) => {
+      // console.log(e)
+      const rawData = JSON.parse(e.data);
+
+      setData((prevData) => {
+        const nextData = prevData.map((d) => {
+          let emptyTables = 0;
+          const zoneId = d.zone;
+          const tables = ids.find((id) => id.zone === zoneId).tables;
+          for (const table of tables) {
+            emptyTables += +rawData[table]
+          }
+  
+          return {
+            ...d,
+            emptyTables
+          }
+        });
+
+        return nextData;
+      })
+    }
+
+    tablesSse.onerror = () => {
+      console.log("Tables SSE Error");
+      tablesSse.close();
+    }
+
+    countSse.onmessage = (e) => {
+      const rawData = JSON.parse(e.data);
+
+      setData((prevData) => {
+        const nextData = prevData.map((d) => {
+          return {
+            ...d,
+            peopleCount: rawData[d.zone]
+          }
+        });
+        console.log(nextData);
+        return nextData;
+      });
+    }
+
+    countSse.onerror = () => {
+      console.log("Count SSE Error");
+      countSse.close();
+    }
+
+    return () => {
+      tablesSse.close();
+      countSse.close();
+    }
+  },[])
+
+  const sortedData = [...data].sort((a, b) => selectedOption === 'Descending' ? b.emptyTables - a.emptyTables : a.emptyTables - b.emptyTables);
   return (
     <Card className='h-[80vh]'>
       <div className="flex flex-row justify-between">
         <p className="font-bold text-2xl">Where to find seats</p>
-        <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+        <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} mode='primary' />
       </div>
       <table className='text-lg mt-6'>
         <thead>

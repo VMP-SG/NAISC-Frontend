@@ -22,10 +22,10 @@ const FeedPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
               <div className={`h-8 w-16 rounded-full transition-all relative ${toggleBox ? "bg-purple" : "bg-gray bg-opacity-50"} py-1 flex cursor-pointer mr-4`} onClick={() => setToggleBox((bool) => !bool)}>
                 <div className={`bg-white h-6 w-6 rounded-full transition-all absolute ${toggleBox ? "left-[calc(100%-1.75rem)]" : "left-1"}`} />
               </div>
-              <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+              <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} mode='primary' />
             </div>
           </div>
-          <img className='flex-1 mt-6 overflow-hidden object-cover' src={import.meta.env.VITE_BACKEND_URL + "/video"} alt="Live Feed" />
+          <img className='flex-1 mt-6 overflow-hidden object-cover' src={import.meta.env.VITE_BACKEND_URL + "/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
         </Card>
       </div>
     </>
