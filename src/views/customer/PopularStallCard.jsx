@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 import { stalls } from '../../constants/stall';
 
 const chartOptions = {
+  responsive: true,
   indexAxis: 'y',
   scales: {
     y: {
@@ -31,7 +32,7 @@ const chartOptions = {
     legend: {
       display: false
     }
-  }
+  },
 }
 
 const PopularStallCard = ({ mode }) => {
@@ -53,6 +54,7 @@ const PopularStallCard = ({ mode }) => {
     const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/queues");
     sse.onmessage = (e) => {
       const data = Object.entries(JSON.parse(e.data)).sort(([,a], [,b]) => mode === 'Descending' ? b - a : a - b);
+      console.log(data, mode);
       const fetchedLabels = [];
       const fetchedValues = [];
       for (const [label, value] of data) {
@@ -69,7 +71,7 @@ const PopularStallCard = ({ mode }) => {
     }
 
     return () => sse.close();
-  },[])
+  },[mode])
 
   return (
     <Card className='h-[80vh]'>
