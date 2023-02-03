@@ -26,6 +26,18 @@ const SeatTable = () => {
         tableCount: ids.find((id) => id.zone === 'C').tables.length,
         emptyTables: 0,
         peopleCount: 0
+      },
+      {
+        zone: 'D',
+        tableCount: ids.find((id) => id.zone === 'D').tables.length,
+        emptyTables: 0,
+        peopleCount: 0
+      },
+      {
+        zone: 'E',
+        tableCount: ids.find((id) => id.zone === 'E').tables.length,
+        emptyTables: 0,
+        peopleCount: 0
       }
     ]
   )
@@ -72,7 +84,6 @@ const SeatTable = () => {
             peopleCount: rawData[d.zone]
           }
         });
-        console.log(nextData);
         return nextData;
       });
     }

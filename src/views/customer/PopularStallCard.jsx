@@ -53,7 +53,6 @@ const PopularStallCard = ({ mode }) => {
     const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/queues");
     sse.onmessage = (e) => {
       const data = Object.entries(JSON.parse(e.data)).sort(([,a], [,b]) => mode === 'Descending' ? b - a : a - b);
-      console.log(data);
       const fetchedLabels = [];
       const fetchedValues = [];
       for (const [label, value] of data) {

@@ -65,7 +65,6 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
           newHeatmapData[y][x] = tableCellCount;
         }
       }
-      console.log(newHeatmapData);
       setHeatmapData(newHeatmapData);
     }
 
