@@ -24,14 +24,13 @@ function App() {
       }
     }
     startAPI();
+    // const stopAPI = () => {
+    //   fetch(import.meta.env.VITE_BACKEND_URL + "/stopAPI");
+    //   alert("Stopping API...")
+    // }
 
-    const stopAPI = () => {
-      fetch(import.meta.env.VITE_BACKEND_URL + "/stopAPI");
-      alert("Stopping API...")
-    }
-
-    window.addEventListener("beforeunload", stopAPI);
-    () => window.removeEventListener("beforeunload", stopAPI)
+    // window.addEventListener("beforeunload", stopAPI);
+    // () => window.removeEventListener("beforeunload", stopAPI)
   },[]);
 
   if (loading) {
