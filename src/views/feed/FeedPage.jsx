@@ -25,7 +25,10 @@ const FeedPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
               <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} mode='primary' />
             </div>
           </div>
-          <img className='flex-1 mt-6 overflow-hidden object-cover' src={import.meta.env.VITE_BACKEND_URL + "/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
+          <div className='flex-1 mt-6 overflow-scroll scrollbar-hidden'>
+            <img className='object-cover w-full' src={import.meta.env.VITE_BACKEND_URL + "/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
+          </div>
+
         </Card>
       </div>
     </>

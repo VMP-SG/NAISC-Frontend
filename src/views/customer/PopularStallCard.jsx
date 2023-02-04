@@ -51,7 +51,7 @@ const PopularStallCard = ({ mode }) => {
   }
 
   useEffect(() => {
-    const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/queues");
+    const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/count/queues");
     sse.onmessage = (e) => {
       const data = Object.entries(JSON.parse(e.data)).sort(([,a], [,b]) => mode === 'Descending' ? b - a : a - b);
       console.log(data, mode);
