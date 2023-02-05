@@ -11,6 +11,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log(backend_url);
     const startAPI = async () => {
       console.log("starting api...");
       setLoading(true);

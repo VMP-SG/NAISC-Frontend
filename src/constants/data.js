@@ -10,7 +10,6 @@ export function getGraphData() {
     now.setHours(hour + 1 + i);
     return now.toLocaleString('en-US', { hour: 'numeric', hour12: true })
   });
-  console.log(labels, adjCounts);
   return [labels, adjCounts];
 }
 
