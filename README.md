@@ -2,6 +2,8 @@
 
 One of the many use cases of Hawk-Eye Centre is an online dashboard providing accurate live information on the crowdedness level in selected hawker centres.
 
+Our integrated dashboard can be found at this [link](https://naisc.vmpsg.xyz).
+
 ## ✨ Features
 
 1. **Home Page**
