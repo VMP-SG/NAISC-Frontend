@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import Card from '../../components/Card'
 import Dropdown from '../../components/Dropdown'
+import { backend_url } from '../../constants/network'
 
 const options = ["Zone A", "Zone B", "Zone C", "Zone D", "Zone E"]
 
@@ -26,7 +27,7 @@ const FeedPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
             </div>
           </div>
           <div className='flex-1 mt-6 overflow-scroll scrollbar-hidden'>
-            <img className='object-cover w-full' src={import.meta.env.VITE_BACKEND_URL + "/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
+            <img className='object-cover w-full' src={backend_url + "/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
           </div>
 
         </Card>

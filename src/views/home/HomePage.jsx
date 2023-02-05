@@ -10,6 +10,7 @@ import { HeatMapGrid } from "react-grid-heatmap";
 import { dataPoints, coordinates, isWithinZoneBoundaries } from '../../constants/heatmap';
 import { getGraphData } from '../../constants/data';
 import { Line } from 'react-chartjs-2';
+import { backend_url } from '../../constants/network';
 
 const heatmapOptions = ['Overall', 'Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E'];
 const zoneCountOptions = heatmapOptions.slice(1);
@@ -47,8 +48,8 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   const zonalIcons = Array.from({ length: zonalCount / COUNT_PER_ICON }, (_, i) => <UserIcon fill='#6F6AF8' className='w-4' key={i} />).concat(totalIcons.slice(zonalCount / COUNT_PER_ICON))
 
   useEffect(() => {
-    const zoneCountSse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/count/zones");
-    const tableCountSse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/count/tables");
+    const zoneCountSse = new EventSource(backend_url + "/count/zones");
+    const tableCountSse = new EventSource(backend_url + "/count/tables");
 
     zoneCountSse.onmessage = (e) => {
       setData(JSON.parse(e.data));

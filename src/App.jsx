@@ -4,6 +4,7 @@ import FeedPage from './views/feed/FeedPage'
 import CustomerPage from './views/customer/CustomerPage'
 import { useState, useEffect } from 'react'
 import Logo from "./assets/Logo.svg";
+import { backend_url } from './constants/network'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -14,7 +15,7 @@ function App() {
       console.log("starting api...");
       setLoading(true);
       try {
-        const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/startAPI");
+        const response = await fetch(backend_url + "/startAPI");
         console.log(await response.text());
         console.log("api started");
       } catch (error) {
@@ -24,13 +25,6 @@ function App() {
       }
     }
     startAPI();
-    // const stopAPI = () => {
-    //   fetch(import.meta.env.VITE_BACKEND_URL + "/stopAPI");
-    //   alert("Stopping API...")
-    // }
-
-    // window.addEventListener("beforeunload", stopAPI);
-    // () => window.removeEventListener("beforeunload", stopAPI)
   },[]);
 
   if (loading) {

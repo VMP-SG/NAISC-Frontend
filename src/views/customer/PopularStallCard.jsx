@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card'
 import { Bar } from 'react-chartjs-2';
 import { stalls } from '../../constants/stall';
+import { backend_url } from '../../constants/network';
 
 const chartOptions = {
   responsive: true,
@@ -51,7 +52,7 @@ const PopularStallCard = ({ mode }) => {
   }
 
   useEffect(() => {
-    const sse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/count/queues");
+    const sse = new EventSource(backend_url + "/count/queues");
     sse.onmessage = (e) => {
       const data = Object.entries(JSON.parse(e.data)).sort(([,a], [,b]) => mode === 'Descending' ? b - a : a - b);
       console.log(data, mode);

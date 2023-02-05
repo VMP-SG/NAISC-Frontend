@@ -3,6 +3,7 @@ import Card from '../../components/Card'
 import Dropdown from '../../components/Dropdown'
 import StatusTag from './StatusTag'
 import { ids } from '../../constants/zone'
+import { backend_url } from '../../constants/network'
 
 const options = ["Descending", "Ascending"];
 
@@ -44,8 +45,8 @@ const SeatTable = () => {
 
   const [selectedOption, setSelectedOption] = useState(options[0]);
   useEffect(() => {
-    const tablesSse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/occupancy/tables");
-    const countSse = new EventSource(import.meta.env.VITE_BACKEND_URL + "/count/zones");
+    const tablesSse = new EventSource(backend_url + "/occupancy/tables");
+    const countSse = new EventSource(backend_url + "/count/zones");
     tablesSse.onmessage = (e) => {
       // console.log(e)
       const rawData = JSON.parse(e.data);
