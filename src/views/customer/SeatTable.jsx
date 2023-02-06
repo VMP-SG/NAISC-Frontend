@@ -45,8 +45,8 @@ const SeatTable = () => {
 
   const [selectedOption, setSelectedOption] = useState(options[0]);
   useEffect(() => {
-    const tablesSse = new EventSource(backend_url + "/api/occupancy/tables");
-    const countSse = new EventSource(backend_url + "/api/count/zones");
+    const tablesSse = new EventSource(backend_url + "/occupancy/tables");
+    const countSse = new EventSource(backend_url + "/count/zones");
     tablesSse.onmessage = (e) => {
       // console.log(e)
       const rawData = JSON.parse(e.data);

@@ -15,7 +15,7 @@ function App() {
       console.log("starting api...");
       setLoading(true);
       try {
-        const response = await fetch(backend_url + "/api/startAPI");
+        const response = await fetch(backend_url + "/startAPI");
         console.log(await response.text());
         console.log("api started");
       } catch (error) {

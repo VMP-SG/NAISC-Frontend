@@ -48,8 +48,8 @@ const HomePage = ({ open, onOpenSidebar, onCloseSidebar }) => {
   const zonalIcons = Array.from({ length: zonalCount / COUNT_PER_ICON }, (_, i) => <UserIcon fill='#6F6AF8' className='w-4' key={i} />).concat(totalIcons.slice(zonalCount / COUNT_PER_ICON))
 
   useEffect(() => {
-    const zoneCountSse = new EventSource(backend_url + "/api/count/zones");
-    const tableCountSse = new EventSource(backend_url + "/api/count/tables");
+    const zoneCountSse = new EventSource(backend_url + "/count/zones");
+    const tableCountSse = new EventSource(backend_url + "/count/tables");
 
     zoneCountSse.onmessage = (e) => {
       setData(JSON.parse(e.data));

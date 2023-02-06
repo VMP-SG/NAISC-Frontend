@@ -27,7 +27,7 @@ const FeedPage = ({ open, onOpenSidebar, onCloseSidebar }) => {
             </div>
           </div>
           <div className='flex-1 mt-6 overflow-scroll scrollbar-hidden'>
-            <img className='object-cover w-full' src={backend_url + "/api/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
+            <img className='object-cover w-full' src={backend_url + "/video" + (toggleBox ? "/filter/" : "/raw/") + selectedOption.split(" ")[1]} alt="Live Feed" />
           </div>
 
         </Card>
