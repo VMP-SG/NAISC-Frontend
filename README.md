@@ -22,6 +22,11 @@ Our integrated dashboard can be found at this [link](https://naisc.vmpsg.xyz).
 
 1. Install yarn at [https://classic.yarnpkg.com/lang/en/docs/install/](https://classic.yarnpkg.com/lang/en/docs/install/)
 
+2. Clone the repository
+```bash
+git clone https://github.com/VMP-SG/NAISC-Frontend.git
+```
+
 2. Run the following commands
 ```bash
 yarn
