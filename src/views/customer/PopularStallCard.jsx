@@ -52,7 +52,7 @@ const PopularStallCard = ({ mode }) => {
   }
 
   useEffect(() => {
-    const sse = new EventSource(backend_url + "/count/queues");
+    const sse = new EventSource(backend_url + "/api/count/queues");
     sse.onmessage = (e) => {
       const data = Object.entries(JSON.parse(e.data)).sort(([,a], [,b]) => mode === 'Descending' ? b - a : a - b);
       const fetchedLabels = [];

@@ -11,12 +11,11 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log(backend_url);
     const startAPI = async () => {
       console.log("starting api...");
       setLoading(true);
       try {
-        const response = await fetch(backend_url + "/startAPI");
+        const response = await fetch(backend_url + "/api/startAPI");
         console.log(await response.text());
         console.log("api started");
       } catch (error) {
